@@ -1,0 +1,28 @@
+<br />
+<h1>TP3 complement</h1>
+<div>
+  <h1>Liste des étudiants</h1>
+  <ul>
+    <li *ngFor="let item of etudiants; index as i; count as c" class="">
+      <label for="etu">Etudiant {{ i + 1 }}/{{ c }}</label>
+      <img [src]="item.photo" alt="" />
+      <label for="#"
+        >{{ item.nom }}{{ item.prenom | uppercase }}-{{ item.option }}-Date de
+        naissance {{ item.dateNaissance | date : "dd/MM/yyyy" }}
+        <span *ngIf="item.moyenne >= 10" for=""
+          >Moyenne:{{ item.moyenne }}</span
+        >
+      </label>
+      <button (click)="Affiche(i)">Info</button>
+    </li>
+  </ul>
+  <div *ngIf="test">
+    {{ etudiants[indices].prenom
+    }}{{ etudiants[indices].nom | uppercase }},originaire de :
+    {{ etudiants[indices].ville }} a une moyenne de :
+    {{ etudiants[indices].moyenne }}
+    <span *ngIf="etudiants[indices].boursier">et est boursier</span
+    ><button (click)="test = false">Fermer</button>
+  </div>
+</div>
+<hr />

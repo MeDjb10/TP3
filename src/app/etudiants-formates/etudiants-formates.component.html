@@ -1,0 +1,55 @@
+<div class="container">
+  <h1>Liste des étudiants</h1>
+  <ul class="list-group">
+    <ng-container *ngFor="let item of etudiants; index as i; count as c">
+      <li
+        [ngClass]="{
+          'list-group-item-info': item.option == 'DSI',
+          'list-group-item-secondary': item.option == 'SEM'
+        }"
+        class="list-group-item d-flex justify-content-around align-items-center"
+      >
+        <div>
+          <label for="etu">Etudiant {{ i + 1 }}/{{ c }}</label>
+          <img [src]="item.photo" alt="" />
+          {{ item.nom }}{{ item.prenom | uppercase }}-
+          <span class="badge bg-light text-dark">{{ item.option }}</span> -Date
+          de naissance
+          <span class="badge bg-secondary rounded-pill p-2">{{
+            item.dateNaissance | date : "dd/MM/yyyy"
+          }}</span>
+        </div>
+        <div>
+          <i
+            [ngClass]="{
+              'fa-solid fa-award': item.moyenne > 16
+            }"
+          ></i>
+          <span class="fw-bold" *ngIf="item.moyenne >= 10" for=""
+            >Moyenne:{{ item.moyenne }}</span
+          >
+
+          <button class="btn btn-primary" (click)="Affiche(i)">
+            <i class="fa-solid fa-info mx-2"></i>Info
+          </button>
+        </div>
+      </li>
+    </ng-container>
+  </ul>
+  <div
+    *ngIf="test"
+    class="mt-4 px-3 text-bg-light rounded d-flex justify-content-between"
+  >
+    <div>
+      {{ etudiants[indices].prenom
+      }}{{ etudiants[indices].nom | uppercase }},originaire de :
+      {{ etudiants[indices].ville }} a une moyenne de :
+      {{ etudiants[indices].moyenne }}
+      <span *ngIf="etudiants[indices].boursier">et est boursier</span>
+    </div>
+    <div>
+      <button class="btn btn-dark" (click)="test = false">Fermer</button>
+    </div>
+  </div>
+</div>
+<br>

@@ -1,0 +1,57 @@
+<h1>Liste des produit informatiques</h1>
+
+<ul>
+  <li *ngFor="let tab of materiels; index as i">
+    <p>{{ tab.nom }}</p>
+    <img [src]="tab.image" [alt]="tab.nom" />
+    <label for="ref"
+      >Reference:{{ tab.reference }} Prix:{{ tab.prix }} Etat:{{ tab.etat }}
+    </label>
+    <button *ngIf="tab.etat == 'endommagé'" (click)="tab.etat = 'réparé'">
+      Reparer
+    </button>
+  </li>
+</ul>
+
+<hr />
+
+<div class="container">
+  <h1>Liste des produits informatiques</h1>
+  <ul class="list-group">
+    <ng-container *ngFor="let tab of materiels; index as i">
+      <li
+        [ngClass]="{
+          'list-group-item': true,
+          'list-group-item-info': tab.etat == 'endommagé'
+        }"
+      >
+        <p>{{ tab.nom | uppercase }}</p>
+        <img [src]="tab.image" [alt]="tab.nom" />
+        <label for="ref"
+          >Reference:{{ tab.reference }}
+          <span
+            [ngClass]="{
+              'badge': true,
+              'rounded-pill': true,
+              'bg-warning': tab.prix < 200,
+              'bg-dark': tab.prix >= 200,
+              'mx-1': true
+            }"
+          >
+            <i [ngClass]="{ 'fa-solid': true, 'fa-coins': tab.prix > 200 }"></i>
+            prix : {{ tab.prix | number : ".3" }} DT
+          </span>
+          Etat:{{ tab.etat | titlecase }}
+        </label>
+        <button
+          [ngClass]="{ 'btn btn-primary mx-2': true }"
+          *ngIf="tab.etat == 'endommagé'"
+          (click)="tab.etat = 'réparé'"
+        >
+          Reparer
+        </button>
+      </li>
+    </ng-container>
+  </ul>
+  <div id="div"></div>
+</div>

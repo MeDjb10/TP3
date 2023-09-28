@@ -1,0 +1,47 @@
+<h3>1.Operation sur un tableau</h3>
+<ul>
+  <li *ngFor="let t of tab; index as indice; count as compteur">
+    {{ t }} a pour position {{ indice + 1 }}/{{ compteur }}
+  </li>
+</ul>
+
+<h3>2.Tableau avec boutons</h3>
+<ul>
+  <li *ngFor="let t of tab; index as indice; count as compteur">
+    {{ t }}
+    <button (click)="onPosition(indice)">Position</button>
+  </li>
+</ul>
+
+<h3>3.Affichage des boutons des éléments pairs du tableau</h3>
+<ul>
+  <li *ngFor="let t of tab; index as indice; count as compteur">
+    {{ t }}
+    <button *ngIf="t % 2 == 0" (click)="onPosition(indice)">Position</button>
+  </li>
+</ul>
+
+<h3>4.Affichage des éléments pairs du tableau</h3>
+<ul>
+  <ng-container *ngFor="let t of tab">
+    <li *ngIf="t % 2 == 0">
+      {{ t }}
+    </li>
+  </ng-container>
+</ul>
+
+<h3>4.Affichage des éléments pairs du tableau</h3>
+<ul>
+  <ng-container *ngFor="let t of tab">
+    <li>
+      <i
+        [ngClass]="
+          t > 50
+            ? 'fa-solid fa-circle-arrow-up'
+            : 'fa-solid fa-circle-arrow-down'
+        "
+      ></i>
+      {{ t }}
+    </li>
+  </ng-container>
+</ul>
